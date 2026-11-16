@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f3ed">
+  <meta name="description" content="Encontre seu próximo look no Bazar da Ana. Confira as peças disponíveis e fale com a Ana pelo WhatsApp.">
+  <title>Bazar da Ana — peças com uma nova história</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #342d2a;
+      --muted: #766b64;
+      --paper: #f8f3ed;
+      --card: #fffdfa;
+      --rose: #a64d5d;
+      --rose-dark: #843847;
+      --line: #e9ded5;
+      --green: #178c4a;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1180px, calc(100% - 48px));
+      min-height: 78px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      text-decoration: none;
+    }
+
+    .brand span {
+      color: var(--rose);
+    }
+
+    .top-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--green);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .top-contact img {
+      width: 25px;
+      height: 25px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      width: min(1180px, calc(100% - 48px));
+      margin: 8px auto 0;
+      padding: clamp(42px, 7vw, 82px) clamp(28px, 7vw, 82px);
+      border: 1px solid #eddfd7;
+      border-radius: 28px;
+      background:
+        radial-gradient(ellipse at 86% 20%, rgba(196, 128, 113, 0.16), transparent 30%),
+        linear-gradient(115deg, #f3e5dc, #f8eee8 62%, #f5e9e2);
+    }
+
+    .hero::after {
+      position: absolute;
+      right: 7%;
+      bottom: -96px;
+      width: 280px;
+      height: 280px;
+      border: 1px solid rgba(166, 77, 93, 0.15);
+      border-radius: 50%;
+      content: "";
+      box-shadow: 0 0 0 24px rgba(166, 77, 93, 0.035), 0 0 0 50px rgba(166, 77, 93, 0.025);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--rose-dark);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 620px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      font-weight: 500;
+      letter-spacing: -0.055em;
+      line-height: 1.02;
+    }
+
+    .hero-copy {
+      max-width: 490px;
+      margin: 20px 0 0;
+      color: #675a53;
+      font-size: clamp(1rem, 2vw, 1.12rem);
+      line-height: 1.7;
+    }
+
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      padding: 13px 19px;
+      border-radius: 999px;
+      color: white;
+      background: var(--rose);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .hero-link:hover {
+      transform: translateY(-2px);
+      background: var(--rose-dark);
+    }
+
+    .hero-link:focus-visible,
+    .top-contact:focus-visible,
+    .filter:focus-visible,
+    .buy-link:focus-visible,
+    .floating-contact:focus-visible {
+      outline: 3px solid #d5a252;
+      outline-offset: 3px;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .collection {
+      padding: 62px 0 82px;
+    }
+
+    .collection-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .collection-heading h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 500;
+      letter-spacing: -0.045em;
+    }
+
+    .collection-heading p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 25px;
+    }
+
+    .filter {
+      padding: 9px 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #655b55;
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.85rem;
+      transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+    }
+
+    .filter:hover,
+    .filter[aria-pressed="true"] {
+      border-color: var(--rose);
+      color: white;
+      background: var(--rose);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .product-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: var(--card);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(74, 47, 38, 0.09);
+    }
+
+    .product-photo {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: #eee5de;
+    }
+
+    .product-info {
+      padding: 16px;
+    }
+
+    .product-code {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--rose-dark);
+      font-size: 0.69rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .product-name {
+      min-height: 2.8em;
+      margin: 0;
+      font-size: 0.96rem;
+      font-weight: 650;
+      line-height: 1.4;
+    }
+
+    .product-note {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 17px;
+    }
+
+    .product-price {
+      white-space: nowrap;
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+    }
+
+    .buy-link {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 11px;
+      border-radius: 999px;
+      color: white;
+      background: var(--green);
+      font-size: 0.78rem;
+      font-weight: 750;
+      text-decoration: none;
+      transition: background 160ms ease;
+    }
+
+    .buy-link:hover,
+    .floating-contact:hover {
+      background: #106e39;
+    }
+
+    .buy-link img {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+    }
+
+    .empty-state {
+      display: none;
+      padding: 36px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer {
+      padding: 25px 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    .floating-contact {
+      position: fixed;
+      z-index: 2;
+      right: 22px;
+      bottom: 22px;
+      display: grid;
+      width: 58px;
+      height: 58px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 8px 22px rgba(23, 140, 74, 0.3);
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .floating-contact:hover {
+      transform: translateY(-2px);
+    }
+
+    .floating-contact img {
+      width: 34px;
+      height: 34px;
+    }
+
+    @media (max-width: 980px) {
+      .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .topbar,
+      .hero,
+      main {
+        width: min(100% - 32px, 520px);
+      }
+
+      .topbar {
+        min-height: 68px;
+      }
+
+      .top-contact span {
+        display: none;
+      }
+
+      .hero {
+        margin-top: 4px;
+        padding: 42px 25px 48px;
+        border-radius: 21px;
+      }
+
+      .hero::after {
+        right: -105px;
+      }
+
+      .hero-copy {
+        max-width: 360px;
+      }
+
+      .collection {
+        padding: 48px 0 66px;
+      }
+
+      .collection-heading {
+        align-items: start;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+      }
+
+      .product-info {
+        padding: 12px;
+      }
+
+      .product-name {
+        min-height: 3.9em;
+        font-size: 0.88rem;
+      }
+
+      .product-bottom {
+        align-items: start;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 13px;
+      }
+
+      .buy-link {
+        justify-content: center;
+        width: 100%;
+        padding: 9px 7px;
+        font-size: 0.75rem;
+      }
+
+      .floating-contact {
+        right: 15px;
+        bottom: 15px;
+        width: 52px;
+        height: 52px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-name {
+        min-height: 0;
+      }
+
+      .product-bottom {
+        align-items: center;
+        flex-direction: row;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Bazar da Ana — início">bazar <span>da ana</span></a>
+    <a class="top-contact" href="https://wa.me/55719988599600?text=Ol%C3%A1%2C%20Ana!%20Vim%20pelo%20Bazar%20da%20Ana." target="_blank" rel="noopener noreferrer">
+      <img src="ico/whatsapp.png" alt="">
+      <span>Fale com a Ana</span>
+    </a>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <p class="eyebrow">Peças especiais esperando por você</p>
+    <h1 id="hero-title">Um novo look,<br>uma nova história.</h1>
+    <p class="hero-copy">Encontre vestidos e outras peças queridas no Bazar da Ana. Escolha a sua favorita e chame a Ana pelo WhatsApp para combinar a compra.</p>
+    <a class="hero-link" href="#colecao">Ver peças disponíveis <span aria-hidden="true">↓</span></a>
+  </section>
+
+  <main>
+    <section class="collection" id="colecao" aria-labelledby="collection-title">
+      <div class="collection-heading">
+        <div>
+          <p class="eyebrow">Escolha a sua favorita</p>
+          <h2 id="collection-title">Peças disponíveis</h2>
+          <p>Confira o preço e fale com a Ana para comprar.</p>
+        </div>
+      </div>
+      <div class="filters" role="group" aria-label="Filtrar peças por categoria">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">Todas</button>
+        <button class="filter" type="button" data-filter="vestido" aria-pressed="false">Vestidos</button>
+        <button class="filter" type="button" data-filter="outra" aria-pressed="false">Outras peças</button>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+      <p class="empty-state" id="empty-state">Nenhuma peça encontrada nesta categoria.</p>
+    </section>
+  </main>
+
+  <footer>Bazar da Ana <span aria-hidden="true">·</span> Para comprar, fale diretamente com a Ana pelo WhatsApp.</footer>
+
+  <a class="floating-contact" href="https://wa.me/55719988599600?text=Ol%C3%A1%2C%20Ana!%20Vim%20pelo%20Bazar%20da%20Ana." target="_blank" rel="noopener noreferrer" aria-label="Conversar com a Ana pelo WhatsApp">
+    <img src="ico/whatsapp.png" alt="">
+  </a>
+
+  <script>
+    const whatsappNumber = "55719988599600";
+    const products = [
+      { code: "P01", category: "outra", name: "Calça jeans azul-clara, tamanho 40", price: 35, image: "1794328288070.jpg" },
+      { code: "P02", category: "outra", name: "Calça cenoura de alfaiataria bege", price: 45, image: "1794328257876.jpg" },
+      { code: "P03", category: "outra", name: "Bermuda azul-escuro, tamanho 38", price: 25, image: "1794328216677.jpg" },
+      { code: "P04", category: "outra", name: "Blusa preta", price: 20, image: "1794328063270.jpg" },
+      { code: "P05", category: "outra", name: "Blusa rosa de manga longa", price: 25, image: "1794328141473.jpg" },
+      { code: "P06", category: "outra", name: "Blusa de frio branca e preta", price: 35, image: "1794327811834.jpg" },
+      { code: "V01", category: "vestido", name: "Vestido de festa longo (nunca usado)", price: 70, image: "1794327033479.jpg" },
+      { code: "V02", category: "vestido", name: "Vestido laranja", price: 30, image: "1794327721009.jpg" },
+      { code: "V03", category: "vestido", name: "Vestido floral verde (pouco usado)", price: 50, image: "1794327274065.jpg" },
+      { code: "V04", category: "vestido", name: "Vestido quadriculado", price: 30, image: "1794327612008.jpg" },
+      { code: "V05", category: "vestido", name: "Vestido bege de alça", price: 40, image: "1794327633135.jpg" },
+      { code: "V06", category: "vestido", name: "Vestido longo floral", price: 35, image: "1794327670255.jpg" },
+      { code: "V07", category: "vestido", name: "Vestido colorido", price: 20, image: "1794327430984.jpg" },
+      { code: "V08", category: "vestido", name: "Vestido marrom de manga longa", price: 60, image: "1794327370868.jpg" },
+      { code: "V09", category: "vestido", name: "Vestido branco e azul de manga longa", price: 45, image: "1794327326145.jpg" },
+      { code: "V10", category: "vestido", name: "Vestido verde longo", price: 50, image: "1794327274065.jpg" },
+      { code: "V11", category: "vestido", name: "Vestido lilás longo", price: 50, image: "1794327212630.jpg" },
+      { code: "V12", category: "vestido", name: "Vestido preto, branco e marrom de manga longa", price: 30, image: "1794327176886.jpg" },
+      { code: "V13", category: "vestido", name: "Vestido lilás longo", price: 50, image: "1794327033479.jpg" }
+    ];
+
+    const grid = document.querySelector("#product-grid");
+    const emptyState = document.querySelector("#empty-state");
+    const money = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+
+    function productCard(product, index) {
+      const message = `Olá, Ana! Tenho interesse na peça ${product.code} — ${product.name}, por ${money.format(product.price)}. Ainda está disponível?`;
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      const card = document.createElement("article");
+      card.className = "product-card";
+      card.dataset.category = product.category;
+
+      const image = document.createElement("img");
+      image.className = "product-photo";
+      image.src = `img/${product.image}`;
+      image.alt = product.name;
+      image.loading = index < 4 ? "eager" : "lazy";
+
+      const info = document.createElement("div");
+      info.className = "product-info";
+
+      const code = document.createElement("span");
+      code.className = "product-code";
+      code.textContent = `Código ${product.code}`;
+
+      const name = document.createElement("h3");
+      name.className = "product-name";
+      name.textContent = product.name;
+
+      const price = document.createElement("span");
+      price.className = "product-price";
+      price.textContent = money.format(product.price);
+
+      const bottom = document.createElement("div");
+      bottom.className = "product-bottom";
+
+      const buy = document.createElement("a");
+      buy.className = "buy-link";
+      buy.href = url;
+      buy.target = "_blank";
+      buy.rel = "noopener noreferrer";
+      buy.setAttribute("aria-label", `Comprar ${product.name}, código ${product.code}, pelo WhatsApp`);
+
+      const icon = document.createElement("img");
+      icon.src = "ico/whatsapp.png";
+      icon.alt = "";
+
+      const label = document.createElement("span");
+      label.textContent = "Tenho interesse";
+
+      buy.append(icon, label);
+      bottom.append(price, buy);
+      info.append(code, name, bottom);
+      card.append(image, info);
+      return card;
+    }
+
+    function renderProducts(filter = "all") {
+      const visibleProducts = products.filter(product => filter === "all" || product.category === filter);
+      grid.replaceChildren(...visibleProducts.map(productCard));
+      emptyState.style.display = visibleProducts.length ? "none" : "block";
+    }
+
+    document.querySelectorAll(".filter").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter").forEach(filter => {
+          filter.setAttribute("aria-pressed", String(filter === button));
+        });
+        renderProducts(button.dataset.filter);
+      });
+    });
+
+    renderProducts();
+  </script>
+</body>
+</html>
